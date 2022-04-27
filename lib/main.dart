@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:todo/views/homepage.dart';
+import 'package:todo/views/user_home.dart';
 
 void main(List<String> args) async {
   SystemChrome.setSystemUIOverlayStyle(
@@ -12,14 +12,17 @@ void main(List<String> args) async {
   );
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const TodoApp());
+  runApp(const UserApp());
 }
 
-class TodoApp extends StatelessWidget {
-  const TodoApp({Key? key}) : super(key: key);
+class UserApp extends StatelessWidget {
+  const UserApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge, overlays: [
+      SystemUiOverlay.top,
+    ]);
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitUp,
@@ -27,7 +30,7 @@ class TodoApp extends StatelessWidget {
     return MaterialApp(
       scrollBehavior: const CupertinoScrollBehavior(),
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      home: const UserHome(),
       theme: ThemeData.dark().copyWith(
         primaryColor: const Color.fromARGB(255, 219, 187, 6),
       ),
@@ -35,4 +38,4 @@ class TodoApp extends StatelessWidget {
   }
 }
 
-// finished implementing CRUD Functionality with the TodoDAO class
+// finished implementing CRUD Functionality with the TodoDAO class.
